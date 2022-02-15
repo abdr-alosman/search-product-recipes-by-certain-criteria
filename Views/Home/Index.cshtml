@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";    
+}
+
+
+
+ <div class="container mb-5 border border-primary p-4 mt-5">
+  <h4>Search By Specific Criteria</h4>
+  <br />
+
+  <form asp-action="DetailedSearch" asp-controller="Home">
+    <div class="row">
+   
+      <div class="col-6 mb-3">
+           <select name="productType" class="form-control">
+               <option value="">Choose Product Type...</option>
+               <option>H1</option>
+               <option>H2</option>
+               <option>H3</option>
+               <option>Y1</option>
+               <option>Y2</option>
+               <option>A</option>
+            </select>
+      </div>
+     
+      <div class="col-6 mb-3">
+        <input type="text" class="form-control" placeholder="Enter SAP Code" name="sap" >
+      </div>
+         <div class="col-6">
+        <input type="text" class="form-control"  placeholder="Enter Origin" name="origin">
+      </div>
+      <div class="col-6">
+           <select name="finish" class="form-control">
+              <option value="">Choose...</option>
+               <option>T</option>
+               <option>H</option>
+              
+            </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Search</button>
+  </form>
+</div>
+
+
+<br />

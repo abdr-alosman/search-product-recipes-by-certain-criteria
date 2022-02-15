@@ -1,0 +1,564 @@
+﻿@{
+    ViewData["Title"] = "Search Product";
+}
+
+@model List<LogoRecip>
+
+<form asp-action="Search" asp-controller="Home">
+    <div class="container">
+        <div class="row height d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="text" name="term" class="form-control" placeholder="Enter Material Code...">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@{
+    int Counter = 0;
+    int Counter1 = 0;
+    int Counter2 = 0;
+    int Counter3 = 0;
+    int Counter4 = 0;
+    int Counter5 = 0;
+    int Counter6 = 0;
+
+    List<string> Ust1 = new List<string>();
+    List<string> Ust2 = new List<string>();
+    List<string> Ust3 = new List<string>();
+}
+
+@if (ViewBag.Term != null)
+{
+    <div class="text-center ">
+        <br />
+        <p class="border border-success p-2"><b>Searched Code :  <span class="text-success">@ViewBag.Term </span></b> </p>
+
+    </div>
+    <p>Searched material is output product of below receipts :   </p>
+
+    @if (((List<LogoRecip>)ViewBag.Result).Count() == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            There Is No Recipes For The Searched Material ! / this material is not output material for any recipe .
+        </div>
+
+    }
+    @foreach (var item in ViewBag.Result)
+    {
+        <div class="text-white bg-primary p-2 m-2">
+            <a href="#" class="s_@item.Id text-white pr-2 pl-2" onClick="return false;"><i class="fas fa-plus"></i></a>
+            <span> <b>  @item.Receipt - @item.MainProduct </b>  </span>
+
+        </div>
+        <div id="tgled_@item.Id" style="display:none;">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Line Product
+                        </th>
+                        <th> Line Product Def</th>
+                        <th> Amount </th>
+                    </tr>
+
+                </thead>
+                @foreach (var item2 in Model.Where(x => x.Receipt == @item.Receipt && x.LINETYPE == "0"))
+                {
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                @item2.LineProduct
+                                @foreach (var item4 in Model.Where(x => x.MainProduct == item2.LineProduct && x.LINETYPE == "4"))
+                                {
+                                    Counter++;
+
+                                    <p class="mt-2"><b class="bg-success text-white p-1 "><a href="#" class="ss_@Counter text-white" onClick="return false;"><i class="fas fa-plus"></i></a>&nbsp;@item4.Receipt</b></p>
+                                    <div id="tgledd_@Counter" style="display:none;">
+                                        @foreach (var item5 in Model.Where(x => x.Receipt == item4.Receipt && x.LINETYPE == "0"))
+                                        {
+
+                                            <ul>
+                                                <li>
+                                                    @item5.LineProduct  &nbsp; - &nbsp; @item5.LineProductDef
+                                                    @foreach (var item4_1 in Model.Where(x => x.MainProduct == item5.LineProduct && x.LINETYPE == "4"))
+                                                    {
+                                                        Counter1++;
+                                                        <p class="mt-2"><b class="bg-info text-white p-1 "><a href="#" class="sss_@Counter1 text-white" onClick="return false;"><i class="fas fa-plus"></i></a>&nbsp;@item4_1.Receipt</b></p>
+                                                        <div id="tgleddd_@Counter1" style="display:none;">
+                                                            @foreach (var item5_1 in Model.Where(x => x.Receipt == item4_1.Receipt && x.LINETYPE == "0"))
+                                                            {
+                                                                <ul>
+                                                                    <li>
+                                                                        @item5_1.LineProduct &nbsp; - &nbsp; @item5_1.LineProductDef
+                                                                        @foreach (var item4_2 in Model.Where(x => x.MainProduct == item5_1.LineProduct && x.LINETYPE == "4"))
+                                                                        {
+                                                                            Counter2++;
+                                                                            <p class="mt-2"><b class="bg-dark text-white p-1 "><a href="#" class="ssss_@Counter2 text-white" onClick="return false;"><i class="fas fa-plus"></i></a>&nbsp;@item4_2.Receipt</b></p>
+                                                                            <div id="tgledddd_@Counter2" style="display:none;">
+                                                                                @foreach (var item5_2 in Model.Where(x => x.Receipt == item4_2.Receipt && x.LINETYPE == "0"))
+                                                                                {
+                                                                                    <ul>
+                                                                                        <li>
+                                                                                            @item5_2.LineProduct &nbsp; - &nbsp; @item5_2.LineProductDef
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                }
+
+                                                                            </div>
+                                                                            <div>
+
+                                                                                <script>
+                                                                                    $(document).ready(function () {
+                                                                                     $(".ssss_@Counter2").click(function () {
+
+                                                                                                     $("#tgledddd_@Counter2").toggle();
+                                                                                                     $(this).find('i').toggleClass('fas fa-plus fas fa-minus');
+                                                                                                 });
+                                                                                    });
+
+                                                                                </script>
+                                                                            </div>
+                                                                        }
+                                                                    </li>
+                                                                </ul>
+                                                            }
+                                                        </div>
+                                                        <div>
+
+                                                            <script>
+                                                                $(document).ready(function () {
+                                                                 $(".sss_@Counter1").click(function () {
+
+                                                                                 $("#tgleddd_@Counter1").toggle();
+                                                                                 $(this).find('i').toggleClass('fas fa-plus fas fa-minus');
+                                                                             });
+                                                                });
+
+                                                            </script>
+                                                        </div>
+                                                    }
+                                                </li>
+                                            </ul>
+                                        }
+                                    </div>
+                                    <div>
+
+                                        <script>
+                                            $(document).ready(function () {
+                                            $(".ss_@Counter").click(function () {
+
+                                                              $("#tgledd_@Counter").toggle();
+                                                              $(this).find('i').toggleClass('fas fa-plus fas fa-minus');
+                                                          });
+                                            });
+
+                                        </script>
+                                    </div>
+                                }
+                            </td>
+                            <td> @item2.LineProductDef</td>
+                            <td>@item2.AMOUNT</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+
+        </div>
+        <div>
+
+            <script>
+                $(document).ready(function () {
+
+                    $(".s_@item.Id").click(function () {
+
+                        $("#tgled_@item.Id").toggle();
+                        $(this).find('i').toggleClass('fas fa-plus fas fa-minus');
+                    });
+
+                });
+            </script>
+        </div>
+    }
+
+    <br />
+
+    <hr />
+    <hr />
+    <br />
+
+
+    <p> Searched material <b class="text-success">(@ViewBag.Term)</b>  is being used as input product in following receipts : </p>
+    @if (((List<LogoRecip>)ViewBag.UstRecips).Count == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+
+            Searched material is not being used in any receipt
+        </div>
+
+    }
+    @foreach (var item in ViewBag.UstRecips)
+    {
+        Ust1.Add(@item.MainProduct);
+        Counter3++;
+        <div class="text-white bg-success p-2 m-2">
+            <a href="#" class="s1_@Counter3 text-white pl-2 pr-2" onClick="return false;"><i class="fas fa-plus"></i></a>
+            <span> <b>  @item.Receipt - @item.MainProduct </b>  </span>
+
+        </div>
+        <div id="tgled1_@Counter3" style="display:none;">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Line Product
+                        </th>
+                        <th> Line Product Def</th>
+                        <th> Amount </th>
+                    </tr>
+
+                </thead>
+                @foreach (var item2 in Model.Where(x => x.Receipt == @item.Receipt && x.LINETYPE == "0"))
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @if (item2.LineProduct == ViewBag.Term)
+                                {
+                                    <b class="text-success">@item2.LineProduct</b>
+                                }
+                                else
+                                {
+                                    @item2.LineProduct
+
+                                }
+
+                            </td>
+                            <td>
+                                @item2.LineProductDef
+                            </td>
+                            <td>@item2.AMOUNT</td>
+                        </tr>
+
+                    </tbody>
+                }
+            </table>
+        </div>
+        <div>
+
+            <script>
+                $(document).ready(function () {
+                 $(".s1_@Counter3").click(function () {
+
+                                 $("#tgled1_@Counter3").toggle();
+                                 $(this).find('i').toggleClass('fas fa-plus fas fa-minus');
+                             });
+                });
+
+            </script>
+        </div>
+    }
+
+    @if (Ust1.Count() != 0)
+    {
+        @foreach (var item in Ust1.Distinct())
+        {
+            if (Model.Where(x => x.LineProduct == item && x.LINETYPE == "0").Count() == 0)
+            {
+
+            }
+            else
+            {
+                <div class="text-center ">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <p>
+                    Above material/s @foreach (var item3 in Ust1.Distinct())
+                    {
+                        <b class="text-primary"> (@item3)</b>
+                    }
+                    is being used as input product in following receipts :
+                </p>
+                break;
+
+            }
+        }
+    }
+    @foreach (var item in Ust1.Distinct())
+    {
+        var Listem = Model.Where(x => x.LineProduct == item && x.LINETYPE == "0");
+
+        if (Listem.Count() != 0)
+        {
+
+            @foreach (var item2 in Listem)
+            {
+                Ust2.Add(@item2.MainProduct);
+                Counter4++;
+                <div class="text-white bg-success p-2 m-2">
+                    <a href="#" class="s11_@Counter4 text-white pr-2 pl-2 " onClick="return false;"><i class="fas fa-plus"></i></a>
+                    <span> <b>  @item2.Receipt - @item2.MainProduct </b>  </span>
+
+                </div>
+                <div id="tgled11_@Counter4" style="display:none;">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Line Product
+                                </th>
+                                <th> Line Product Def</th>
+                                <th> Amount </th>
+                            </tr>
+
+                        </thead>
+                        @foreach (var item3 in Model.Where(x => x.Receipt == @item2.Receipt))
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @if (item3.LineProduct == item)
+                                        {
+                                            <b class="text-primary">@item3.LineProduct</b>
+                                        }
+                                        else
+                                        {
+                                            @item3.LineProduct
+
+                                        }
+
+                                    </td>
+                                    <td>
+                                        @item3.LineProductDef
+                                    </td>
+                                    <td>@item3.AMOUNT</td>
+                                </tr>
+
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <div>
+
+                    <script>
+                        $(document).ready(function () {
+                         $(".s11_@Counter4").click(function () {
+
+                                         $("#tgled11_@Counter4").toggle();
+                                         $(this).find('i').toggleClass('fas fa-plus fas fa-minus');
+                                     });
+                        });
+
+                    </script>
+                </div>
+            }
+        }
+
+    }
+
+    <!--------------------------------- Ust2 -->
+    @if (Ust2.Count() != 0)
+    {
+        @foreach (var item in Ust2.Distinct())
+        {
+            if (Model.Where(x => x.LineProduct == item && x.LINETYPE == "0").Count() == 0)
+            {
+
+            }
+            else
+            {
+                <div class="text-center ">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <p>
+                    Above material/s @foreach (var item3 in Ust2.Distinct())
+                    {
+                        <b class="text-primary"> (@item3)</b>
+                    } is being used as input product in following receipts :
+                </p>
+                break;
+
+            }
+        }
+    }
+
+    @foreach (var item in Ust2.Distinct())
+    {
+        var Listem = Model.Where(x => x.LineProduct == item && x.LINETYPE == "0");
+        @if (Listem.Count() != 0)
+        {
+            @foreach (var item2 in Listem)
+
+            {
+                Ust3.Add(@item2.MainProduct);
+                Counter5++;
+
+                <div class="text-white bg-success p-2 m-2">
+                    <a href="#" class="s111_@Counter5 text-white pr-2 pl-2" onClick="return false;"><i class="fas fa-plus"></i></a>
+                    <span> <b>  @item2.Receipt - @item2.MainProduct </b>  </span>
+
+                </div>
+                <div id="tgled111_@Counter5" style="display:none;">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Line Product
+                                </th>
+                                <th> Line Product Def</th>
+                                <th> Amount </th>
+                            </tr>
+
+                        </thead>
+                        @foreach (var item3 in Model.Where(x => x.Receipt == @item2.Receipt))
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @if (item3.LineProduct == item)
+                                        {
+                                            <b class="text-primary">@item3.LineProduct</b>
+                                        }
+                                        else
+                                        {
+                                            @item3.LineProduct
+
+                                        }
+
+                                    </td>
+                                    <td>
+                                        @item3.LineProductDef
+                                    </td>
+                                    <td>@item3.AMOUNT</td>
+                                </tr>
+
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <div>
+
+                    <script>
+                        $(document).ready(function () {
+                         $(".s111_@Counter5").click(function () {
+
+                                         $("#tgled111_@Counter5").toggle();
+                                         $(this).find('i').toggleClass('fas fa-plus fas fa-minus');
+                                     });
+                        });
+
+                    </script>
+                </div>
+            }
+
+        }
+    }
+
+    <!--------------------------------- Ust3 -->
+    @if (Ust3.Count() != 0)
+    {
+        @foreach (var item in Ust3.Distinct())
+        {
+            if (Model.Where(x => x.LineProduct == item && x.LINETYPE == "0").Count() == 0)
+            {
+
+            }
+            else
+            {
+                <div class="text-center ">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <p>
+                    Above material/s @foreach (var item3 in Ust3.Distinct())
+                    {
+                        <b class="text-primary"> (@item3)</b>
+                    }  is being used as input product in following receipts :
+                </p>
+                break;
+
+            }
+        }
+
+    }
+
+    @foreach (var item in Ust3.Distinct())
+    {
+        var Listem = Model.Where(x => x.LineProduct == item && x.LINETYPE == "0");
+        @if (Listem.Count() != 0)
+        {
+            @foreach (var item2 in Listem)
+
+            {
+
+                Counter6++;
+
+                <div class="text-white bg-success p-2 m-2">
+                    <a href="#" class="s1111_@Counter6 text-white pr-2 pl-2" onClick="return false;"><i class="fas fa-plus"></i></a>
+                    <span> <b>  @item2.Receipt - @item2.MainProduct </b>  </span>
+
+                </div>
+                <div id="tgled1111_@Counter6" style="display:none;">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Line Product
+                                </th>
+                                <th> Line Product Def</th>
+                                <th> Amount </th>
+                            </tr>
+
+                        </thead>
+                        @foreach (var item3 in Model.Where(x => x.Receipt == @item2.Receipt))
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @if (item3.LineProduct == item)
+                                        {
+                                            <b class="text-primary">@item3.LineProduct</b>
+                                        }
+                                        else
+                                        {
+                                            @item3.LineProduct
+
+                                        }
+
+                                    </td>
+                                    <td>
+                                        @item3.LineProductDef
+                                    </td>
+                                    <td>@item3.AMOUNT</td>
+                                </tr>
+
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <div>
+
+                    <script>
+                        $(document).ready(function () {
+                         $(".s1111_@Counter6").click(function () {
+
+                                         $("#tgled1111_@Counter6").toggle();
+                                         $(this).find('i').toggleClass('fas fa-plus fas fa-minus');
+                                     });
+                        });
+
+                    </script>
+                </div>
+
+            }
+
+        }
+    }
+}
+
+
+
+
