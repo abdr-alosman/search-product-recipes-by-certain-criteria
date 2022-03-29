@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AbdulrahmanAlothman\\Desktop\\Yedek\\SearchProductCode - Kopya\\SearchProductCode\\SearchProductCode.csproj": {}
+    "C:\\Users\\AbdulrahmanAlothman\\Desktop\\My Code Library\\Yeni klasör\\SearchProductCode.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AbdulrahmanAlothman\\Desktop\\Yedek\\SearchProductCode - Kopya\\SearchProductCode\\SearchProductCode.csproj": {
+    "C:\\Users\\AbdulrahmanAlothman\\Desktop\\My Code Library\\Yeni klasör\\SearchProductCode.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AbdulrahmanAlothman\\Desktop\\Yedek\\SearchProductCode - Kopya\\SearchProductCode\\SearchProductCode.csproj",
+        "projectUniqueName": "C:\\Users\\AbdulrahmanAlothman\\Desktop\\My Code Library\\Yeni klasör\\SearchProductCode.csproj",
         "projectName": "SearchProductCode",
-        "projectPath": "C:\\Users\\AbdulrahmanAlothman\\Desktop\\Yedek\\SearchProductCode - Kopya\\SearchProductCode\\SearchProductCode.csproj",
+        "projectPath": "C:\\Users\\AbdulrahmanAlothman\\Desktop\\My Code Library\\Yeni klasör\\SearchProductCode.csproj",
         "packagesPath": "C:\\Users\\AbdulrahmanAlothman\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AbdulrahmanAlothman\\Desktop\\Yedek\\SearchProductCode - Kopya\\SearchProductCode\\obj\\",
+        "outputPath": "C:\\Users\\AbdulrahmanAlothman\\Desktop\\My Code Library\\Yeni klasör\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5JARFwFluOTF1no3yYCqm1fU767eY0Ag0IlJ9DDNKAj3FBYe7W5F95Azk8e9XLb8EkOa7y+K3wuQ/Y7n+TiMow==",
+  "dgSpecHash": "cxilVNXO6PodokuRLAODRMOMYCXJ27+3dg1NyvyPKD0twxrGg4anHcTTFxrwM5RNx1Ifg24pMAB4aHbs2V3o9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AbdulrahmanAlothman\\Desktop\\Yedek\\SearchProductCode - Kopya\\SearchProductCode\\SearchProductCode.csproj",
+  "projectFilePath": "C:\\Users\\AbdulrahmanAlothman\\Desktop\\My Code Library\\Yeni klasör\\SearchProductCode.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AbdulrahmanAlothman\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\AbdulrahmanAlothman\\.nuget\\packages\\jetbrains.annotations\\2021.1.0\\jetbrains.annotations.2021.1.0.nupkg.sha512",
